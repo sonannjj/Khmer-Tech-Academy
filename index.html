@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khmer Tech Academy - រៀនផ្នែកបច្ចេកវិទ្យា</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        * {
+            font-family: 'Battambang', 'Arial', sans-serif;
+        }
+        
+        .font-khmer {
+            font-family: 'Battambang', 'Arial', sans-serif;
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .gradient-accent {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .gradient-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.7);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.7), 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        .rotate-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .rotate-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+
+        .page-transition-enter {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .page-transition-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .page-transition-exit {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .page-transition-exit-active {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .course-hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff" fill-opacity="0.05" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .instructor-card {
+            transition: all 0.3s ease;
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .blog-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.1);
+        }
+
+        .blog-image {
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .stats-card {
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #2d3748;
+        }
+
+        .article-content h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-content ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            list-style-type: disc;
+        }
+
+        .article-content strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Main App Component with Routing
+        const App = () => {
+            const [currentPage, setCurrentPage] = useState('home');
+            const [currentCourse, setCurrentCourse] = useState(null);
+            const [currentArticle, setCurrentArticle] = useState(null);
+            const [isTransitioning, setIsTransitioning] = useState(false);
+
+            const navigateTo = (page, data = null) => {
+                if (page === currentPage && !data) return;
+                
+                setIsTransitioning(true);
+                setTimeout(() => {
+                    setCurrentPage(page);
+                    if (data) {
+                        if (page === 'course-detail') setCurrentCourse(data);
+                        if (page === 'article-detail') setCurrentArticle(data);
+                    }
+                    setIsTransitioning(false);
+                    window.scrollTo(0, 0);
+                }, 300);
+            };
+
+            // Course Data
+            const coursesData = [
+                {
+                    id: 1,
+                    icon: 'fas fa-code',
+                    title: 'Web Development',
+                    description: 'រៀនពីការអភិវឌ្ឍគេហទំព័រពេញលក្ខណៈដោយប្រើ HTML, CSS, JavaScript និង React',
+                    fullDescription: 'វគ្គសិក្សានេះនឹងបង្រៀនអ្នកពីមូលដ្ឋានគ្រឹះនៃការអភិវឌ្ឍគេហទំព័រទំនើប។ អ្នកនឹងរៀនពី HTML5, CSS3, JavaScript ES6+, React.js, Node.js, MongoDB និងការដាក់ផ្សាយគេហទំព័រលើពពក។',
+                    duration: '៦ ខែ',
+                    students: '១២០ នាក់',
+                    price: 'ឥតគិតថ្លៃ',
+                    level: 'ចាប់ផ្ដើម',
+                    color: 'from-blue-500 to-purple-600',
+                    bgColor: 'bg-gradient-to-r from-blue-500 to-purple-600',
+                    instructor: 'វីរៈ សុភាព',
+                    language: 'ខ្មែរ',
+                    projects: 5,
+                    modules: [
+                        'មូលដ្ឋានគ្រឹះ HTML5 & CSS3',
+                        'JavaScript ទំនើប (ES6+)',
+                        'React.js & Redux',
+                        'Node.js & Express.js',
+                        'MongoDB & Database Design',
+                        'RESTful APIs',
+                        'Authentication & Authorization',
+                        'Deployment & DevOps'
+                    ],
+                    requirements: [
+                        'មានកុំព្យូទ័រ និងអ៊ីនធឺណិត',
+                        'ចំណាប់អារម្មណ៍លើការសរសេរកូដ',
+                        'មិនចាំបាច់មានចំណេះដឹងពីការសរសេរកូដពីមុនទេ'
+                    ]
+                },
+                {
+                    id: 2,
+                    icon: 'fas fa-mobile-alt',
+                    title: 'Mobile App Development',
+                    description: 'បង្កើតកម្មវិធីម៉ូបាយលើវេទិកាទាំងពីរដោយប្រើ Flutter និង React Native',
+                    fullDescription: 'រៀនពីការអភិវឌ្ឍកម្មវិធីសម្រាប់ទូរស័ព្ទដៃដោយប្រើ Flutter និង React Native។ អ្នកនឹងអាចបង្កើតកម្មវិធីសម្រាប់ទាំង iOS និង Android ពីកូដតែមួយ។',
+                    duration: '៤ ខែ',
+                    students: '៨០ នាក់',
+                    price: 'គិតថ្លៃ',
+                    level: 'មធ្យម',
+                    color: 'from-green-500 to-teal-600',
+                    bgColor: 'bg-gradient-to-r from-green-500 to-teal-600',
+                    instructor: 'សុខុម ស្រីណេត',
+                    language: 'ខ្មែរ',
+                    projects: 4,
+                    modules: [
+                        'Dart Programming Language',
+                        'Flutter Fundamentals',
+                        'State Management',
+                        'API Integration',
+                        'Firebase Backend',
+                        'App Publishing',
+                        'React Native Basics',
+                        'Cross-platform Development'
+                    ],
+                    requirements: [
+                        'ចំណេះដឹងមូលដ្ឋានពី Programming',
+                        'មានកុំព្យូទ័រ',
+                        'ចំណាប់អារម្មណ៍លើការអភិវឌ្ឍកម្មវិធីម៉ូបាយ'
+                    ]
+                },
+                {
+                    id: 3,
+                    icon: 'fab fa-python',
+                    title: 'Python Programming',
+                    description: 'ចាប់ផ្ដើមជាមួយការសរសេរកូដ Python សម្រាប់ Data Science និង Web Development',
+                    fullDescription: 'Python គឺជាភាសាសរសេរកូដដ៏ពេញនិយមមួយដែលងាយស្រួលរៀន។ វគ្គសិក្សានេះនឹងបង្រៀនអ្នកពីមូលដ្ឋានគ្រឹះ Python រហូតដល់ការប្រើប្រាស់វាក្នុង Data Science, Web Development និង Automation។',
+                    duration: '៣ ខែ',
+                    students: '១៥០ នាក់',
+                    price: 'ឥតគិតថ្លៃ',
+                    level: 'ចាប់ផ្ដើម',
+                    color: 'from-yellow-500 to-orange-600',
+                    bgColor: 'bg-gradient-to-r from-yellow-500 to-orange-600',
+                    instructor: 'ផល្លី សំអាត',
+                    language: 'ខ្មែរ',
+                    projects: 6,
+                    modules: [
+                        'Python Syntax & Basics',
+                        'Data Structures',
+                        'Object-Oriented Programming',
+                        'File Handling',
+                        'Web Scraping',
+                        'Data Analysis with Pandas',
+                        'Data Visualization',
+                        'Introduction to Django'
+                    ],
+                    requirements: [
+                        'មានកុំព្យូទ័រ',
+                        'មិនចាំបាច់មានចំណេះដឹងពីការសរសេរកូដពីមុនទេ',
+                        'ចំណាប់អារម្មណ៍លើការរៀន Programming'
+                    ]
+                },
+                {
+                    id: 4,
+                    icon: 'fas fa-database',
+                    title: 'Data Science',
+                    description: 'រៀន Data Analysis, Machine Learning និង AI ដោយប្រើ Python',
+                    fullDescription: 'វគ្គសិក្សានេះនឹងណែនាំអ្នកចូលក្នុងពិភព Data Science។ អ្នកនឹងរៀនពីការវិភាគទិន្នន័យ, Machine Learning, និង AI ដោយប្រើប្រាស់ឧបករណ៍ដូចជា Pandas, NumPy, Scikit-learn និង TensorFlow។',
+                    duration: '៦ ខែ',
+                    students: '៩០ នាក់',
+                    price: 'គិតថ្លៃ',
+                    level: 'មធ្យម',
+                    color: 'from-purple-500 to-pink-600',
+                    bgColor: 'bg-gradient-to-r from-purple-500 to-pink-600',
+                    instructor: 'វិចិត្រ សារិក',
+                    language: 'ខ្មែរ',
+                    projects: 5,
+                    modules: [
+                        'Python for Data Science',
+                        'Data Analysis with Pandas',
+                        'Data Visualization',
+                        'Statistics for Data Science',
+                        'Machine Learning Basics',
+                        'Deep Learning with TensorFlow',
+                        'Natural Language Processing',
+                        'Data Science Projects'
+                    ],
+                    requirements: [
+                        'ចំណេះដឹងមូលដ្ឋានពី Python',
+                        'ចំណេះដឹងមូលដ្ឋានពីគណិតវិទ្យា',
+                        'មានកុំព្យូទ័រដែលមានសមត្ថភាពគ្រប់គ្រាន់'
+                    ]
+                },
+                {
+                    id: 5,
+                    icon: 'fas fa-palette',
+                    title: 'UI/UX Design',
+                    description: 'រៀនការរចនា Interface និង User Experience សម្រាប់គេហទំព័រ និងកម្មវិធី',
+                    fullDescription: 'រៀនពីគោលការណ៍រចនា UI/UX ទំនើបសម្រាប់បង្កើតបទពិសោធន៍អ្នកប្រើប្រាស់ដ៏ល្អ។ អ្នកនឹងរៀនពីការបង្កើត Wireframes, Prototypes, និងការរចនាដែលទាក់ទាញអ្នកប្រើប្រាស់។',
+                    duration: '៣ ខែ',
+                    students: '៧០ នាក់',
+                    price: 'ឥតគិតថ្លៃ',
+                    level: 'ចាប់ផ្ដើម',
+                    color: 'from-red-500 to-orange-600',
+                    bgColor: 'bg-gradient-to-r from-red-500 to-orange-600',
+                    instructor: 'សុផល សោភ័ណ',
+                    language: 'ខ្មែរ',
+                    projects: 4,
+                    modules: [
+                        'Design Principles',
+                        'User Research',
+                        'Wireframing',
+                        'Prototyping',
+                        'Visual Design',
+                        'Interaction Design',
+                        'Design Systems',
+                        'Portfolio Building'
+                    ],
+                    requirements: [
+                        'មានកុំព្យូទ័រ',
+                        'ចំណាប់អារម្មណ៍លើការរចនា',
+                        'មិនចាំបាច់មានជំនាញរចនាពីមុនទេ'
+                    ]
+                },
+                {
+                    id: 6,
+                    icon: 'fas fa-cloud',
+                    title: 'Cloud Computing',
+                    description: 'រៀន AWS, Azure និង Google Cloud សម្រាប់ការគ្រប់គ្រងសេវាកម្មពពក',
+                    fullDescription: 'វគ្គសិក្សានេះនឹងបង្រៀនអ្នកពីមូលដ្ឋានគ្រឹះនៃ Cloud Computing និងការប្រើប្រាស់សេវាកម្មពពកដូចជា AWS, Azure និង Google Cloud។ អ្នកនឹងរៀនពីការដាក់ផ្សាយ និងគ្រប់គ្រងកម្មវិធីលើពពក។',
+                    duration: '៤ ខែ',
+                    students: '៦០ នាក់',
+                    price: 'គិតថ្លៃ',
+                    level: 'មធ្យម',
+                    color: 'from-indigo-500 to-blue-600',
+                    bgColor: 'bg-gradient-to-r from-indigo-500 to-blue-600',
+                    instructor: 'ធាមិន បញ្ញា',
+                    language: 'ខ្មែរ',
+                    projects: 4,
+                    modules: [
+                        'Cloud Computing Basics',
+                        'AWS Fundamentals',
+                        'Azure Services',
+                        'Google Cloud Platform',
+                        'Serverless Architecture',
+                        'Containerization with Docker',
+                        'Kubernetes',
+                        'Cloud Security'
+                    ],
+                    requirements: [
+                        'ចំណេះដឹងមូលដ្ឋានពី Networking',
+                        'ចំណេះដឹងមូលដ្ឋានពី Linux',
+                        'ចំណេះដឹងមូលដ្ឋានពីការអភិវឌ្ឍកម្មវិធី'
+                    ]
+                }
+            ];
+
+            // Article Data
+            const articlesData = [
+                {
+                    id: 1,
+                    title: 'របៀបចាប់ផ្ដើមរៀន Programming សម្រាប់អ្នកចាប់ផ្ដើម',
+                    excerpt: 'ការរៀន programming អាចហាក់ដូចជាការលំបាកសម្រាប់អ្នកចាប់ផ្ដើម។ អត្ថបទនេះនឹងណែនាំអ្នកពីជំហានដំបូងដើម្បីក្លាយជាអ្នកសរសេរកូដ',
+                    date: '១៥ ខែមករា ២០២៤',
+                    author: 'វីរៈ សុភាព',
+                    category: 'Programming',
+                    readTime: '៥ នាទី',
+                    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    content: `
+                        <h2>ជំហានទី១៖ ជ្រើសរើសភាសាសរសេរកូដដំបូងរបស់អ្នក</h2>
+                        <p>សម្រាប់អ្នកចាប់ផ្ដើម ខ្ញុំសូមណែនាំឱ្យអ្នកជ្រើសរើសភាសាដែលងាយស្រួលរៀន និងមានឯកសារយោងគ្រប់គ្រាន់។ Python គឺជាជម្រើសដ៏ល្អមួយសម្រាប់អ្នកចាប់ផ្ដើម ដោយសារតែវាមានសៀវភៅណែនាំងាយស្រួល និងស៊ាំជាមួយនឹង syntax ដ៏សាមញ្ញ។</p>
+                        
+                        <h2>ជំហានទី២៖ រៀនមូលដ្ឋានគ្រឹះ</h2>
+                        <p>ចាប់ផ្ដើមជាមួយនឹងគំនិតមូលដ្ឋាននៃ programming៖</p>
+                        <ul>
+                            <li>អថេរ (Variables) និងទិន្នន័យប្រភេទ (Data Types)</li>
+                            <li>លក្ខខណ្ឌ (Conditionals) - if, else, elif</li>
+                            <li>រង្វិលជុំ (Loops) - for, while</li>
+                            <li>មុខងារ (Functions)</li>
+                            <li>រចនាសម្ព័ន្ធទិន្នន័យ (Data Structures) - បញ្ជី, វចនានុក្រម</li>
+                        </ul>
+                        
+                        <h2>ជំហានទី៣៖ អនុវត្តការសរសេរកូដ</h2>
+                        <p>ការអនុវត្តគឺជាគន្លឹះចម្បងក្នុងការរៀនសរសេរកូដ។ សូមព្យាយាមបង្កើតគម្រោងតូចៗដើម្បីអនុវត្តចំណេះដឹងរបស់អ្នក។ ឧទាហរណ៍៖</p>
+                        <ul>
+                            <li>កម្មវិធីគណនាសាមញ្ញ</li>
+                            <li>ការបង្កើតបញ្ជីទិន្នន័យ</li>
+                            <li>ការបង្កើតហ្គេមតូចៗដូចជា Hangman ឬ Tic-Tac-Toe</li>
+                        </ul>
+                        
+                        <h2>ជំហានទី៤៖ រៀនពីកំហុស (Debugging)</h2>
+                        <p>ការសរសេរកូដមិនមានកំហុសគឺជារឿងមិនអាចទៅរួចទេ។ រៀនពីរបៀបស្វែងរក និងកែកំហុសក្នុងកូដរបស់អ្នក។ នេះគឺជាជំនាញដ៏សំខាន់សម្រាប់អ្នកសរសេរកូដគ្រប់រូប។</p>
+                        
+                        <h2>ជំហានទី៥៖ បន្តរៀន</h2>
+                        <p>កុំឈប់នៅកម្រិតដំបូង! បន្តរៀនពីគំនិតកម្រិតខ្ពស់ជាងនេះ ដូចជា៖</p>
+                        <ul>
+                            <li>ការគ្រប់គ្រងកំណែ (Version Control) ជាមួយ Git</li>
+                            <li>Object-Oriented Programming (OOP)</li>
+                            <li>ការបង្កើត API</li>
+                            <li>Database និង SQL</li>
+                        </ul>
+                        
+                        <p>ចងចាំថា ការរៀនសរសេរកូដគឺជាដំណើរការដ៏វែង ប៉ុន្តែវាពិតជាមានតម្លៃ។ កុំអស់សង្ឃឹម ហើយបន្តអនុវត្ត!</p>
+                    `
+                },
+                {
+                    id: 2,
+                    title: '៥ ហេតុផលដែល Python គឺល្អសម្រាប់អ្នកចាប់ផ្ដើមរៀន Programming',
+                    excerpt: 'Python គឺជាភាសាសរសេរកូដដ៏ពេញនិយមមួយដែលងាយស្រួលរៀន។ តើហេតុអ្វី? អត្ថបទនេះនឹងបង្ហាញអ្នកពីហេតុផលដែល Python ល្អសម្រាប់អ្នកចាប់ផ្ដើម',
+                    date: '១០ ខែមករា ២០២៤',
+                    author: 'សុខុម ស្រីណេត',
+                    category: 'Python',
+                    readTime: '៧ នាទី',
+                    image: 'https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    content: `
+                        <h2>១. Syntax ដ៏សាមញ្ញ និងងាយស្រួលអាន</h2>
+                        <p>Python មាន syntax ដ៏សាមញ្ញ និងងាយស្រួលអាន ដែលធ្វើឱ្យវាងាយស្រួលសម្រាប់អ្នកចាប់ផ្ដើមរៀន។ មិនដូចភាសាសរសេរកូដផ្សេងទៀតទេ Python ប្រើ indentation (ការចូលបន្ទាត់) ដើម្បីកំណត់ប្លុកកូដ ដែលធ្វើឱ្យកូដមើលទៅស្អាត និងងាយយល់។</p>
+                        
+                        <h2>២. សហគមន៍ដ៏ធំ និងឯកសារយោងគ្រប់គ្រាន់</h2>
+                        <p>Python មានសហគមន៍អ្នកប្រើប្រាស់ដ៏ធំ និងសកម្ម។ នេះមានន័យថាអ្នកអាចស្វែងរកដំណោះស្រាយចំពោះបញ្ហារបស់អ្នកយ៉ាងងាយស្រួល និងទទួលបានជំនួយពីអ្នកដទៃនៅពេលអ្នកជាប់គាំង។</p>
+                        
+                        <h2>៣. Libraries និង Frameworks ដ៏ច្រើន</h2>
+                        <p>Python មាន libraries និង frameworks ជាច្រើនសម្រាប់គោលបំណងផ្សេងៗ៖</p>
+                        <ul>
+                            <li><strong>Django និង Flask</strong> - សម្រាប់ Web Development</li>
+                            <li><strong>Pandas និង NumPy</strong> - សម្រាប់ Data Analysis</li>
+                            <li><strong>TensorFlow និង PyTorch</strong> - សម្រាប់ Machine Learning</li>
+                            <li><strong>Pygame</strong> - សម្រាប់ Game Development</li>
+                        </ul>
+                        
+                        <h2>៤. ភាពទាក់ទងគ្នាឆ្លងវិស័យ</h2>
+                        <p>Python អាចត្រូវបានប្រើប្រាស់ក្នុងវិស័យផ្សេងៗគ្នា៖</p>
+                        <ul>
+                            <li>Web Development</li>
+                            <li>Data Science និង Machine Learning</li>
+                            <li>Automation និង Scripting</li>
+                            <li>Game Development</li>
+                            <li>Internet of Things (IoT)</li>
+                        </ul>
+                        
+                        <h2>៥. តម្រូវការការងារខ្ពស់</h2>
+                        <p>ជំនាញ Python មានតម្រូវការខ្ពស់ក្នុងទីផ្សារការងារ។ ក្រុមហ៊ុនជាច្រើនកំពុងស្វែងរកអ្នកអភិវឌ្ឍន៍ដែលមានជំនាញ Python ដោយសារតែភាពឆ្លាតវៃ និងភាពទាក់ទងគ្នារបស់វា។</p>
+                        
+                        <p>សរុបមក Python គឺជាជម្រើសដ៏ល្អសម្រាប់អ្នកចាប់ផ្ដើមរៀនសរសេរកូដ ដោយសារតែភាពងាយស្រួលរៀន និងលទ្ធភាពដ៏ធំធេងក្នុងការអភិវឌ្ឍន៍ជំនាញវិជ្ជាជីវៈ។</p>
+                    `
+                },
+                {
+                    id: 3,
+                    title: 'របៀបបង្កើត Portfolio ដ៏ល្អសម្រាប់ Developer',
+                    excerpt: 'Portfolio គឺជាឧបករណ៍ដ៏សំខាន់សម្រាប់អ្នកអភិវឌ្ឍន៍ក្នុងការទាក់ទាញអ្នកជួលការងារ។ អត្ថបទនេះនឹងណែនាំអ្នកពីរបៀតបង្កើត portfolio ដ៏ល្អសម្រាប់ developer',
+                    date: '០៥ ខែមករា ២០២៤',
+                    author: 'សុផល សោភ័ណ',
+                    category: 'Career',
+                    readTime: '៨ នាទី',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    content: `
+                        <h2>ហេតុអ្វី Portfolio សំខាន់សម្រាប់ Developer?</h2>
+                        <p>Portfolio គឺជាឧបករណ៍ដ៏សំខាន់សម្រាប់ developer ដោយសារតែ៖</p>
+                        <ul>
+                            <li>វាបង្ហាញពីជំនាញ និងបទពិសោធន៍ជាក់ស្ដែងរបស់អ្នក</li>
+                            <li>វាផ្តល់ឱ្យអ្នកជួលការងារនូវគំនិតអំពីសមត្ថភាពរបស់អ្នក</li>
+                            <li>វាបង្ហាញពីការខិតខំប្រឹងប្រែង និងការច្នៃប្រឌិតរបស់អ្នក</li>
+                            <li>វាជួយបំពេញប្រវត្តិរូបសង្ខេបរបស់អ្នក</li>
+                        </ul>
+                        
+                        <h2>ធាតុសំខាន់ៗនៃ Portfolio ដ៏ល្អ</h2>
+                        <h3>១. គម្រោងដែលបង្ហាញជំនាញផ្សេងៗ</h3>
+                        <p>រួមបញ្ចូលគម្រោងដែលបង្ហាញជំនាញផ្សេងៗរបស់អ្នក៖</p>
+                        <ul>
+                            <li>គម្រោង Front-end (HTML, CSS, JavaScript)</li>
+                            <li>គម្រោង Back-end (API, Database)</li>
+                            <li>គម្រោង Full-stack</li>
+                            <li>គម្រោង Mobile App</li>
+                        </ul>
+                        
+                        <h3>២. ការពិពណ៌នាគម្រោងយ៉ាងច្បាស់លាស់</h3>
+                        <p>សម្រាប់គម្រោងនីមួយៗ ត្រូវរៀបរាប់យ៉ាងច្បាស់លាស់អំពី៖</p>
+                        <ul>
+                            <li>បញ្ហាដែលគម្រោងដោះស្រាយ</li>
+                            <li>បច្ចេកវិទ្យាដែលបានប្រើ</li>
+                            <li>តួនាទីរបស់អ្នកក្នុងគម្រោង</li>
+                            <li>លទ្ធផល ឬផលប៉ះពាល់</li>
+                        </ul>
+                        
+                        <h3>៣. Code ដែលស្អាត និងអាចចូលទៅមើលបាន</h3>
+                        <p>ធ្វើឱ្យ code របស់អ្នកអាចចូលទៅមើលបាននៅលើ GitHub ឬ GitLab៖</p>
+                        <ul>
+                            <li>ប្រើ README.md ដែលល្អសម្រាប់គម្រោងនីមួយៗ</li>
+                            <li>រក្សា code របស់អ្នកឱ្យស្អាត និងមានរចនាសម្ព័ន្ធ</li>
+                            <li>ប្រើ comments ដែលមានន័យច្បាស់លាស់</li>
+                        </ul>
+                        
+                        <h3>៤. តំណភ្ជាប់ទៅកាន់ Demo</h3>
+                        <p>ប្រសិនបើអាច ផ្តល់តំណភ្ជាប់ទៅកាន់ demo ដែលដំណើរការបាន។ នេះអនុញ្ញាតឱ្យអ្នកជួលការងារមើលឃើញពីរបៀបដែលគម្រោងរបស់អ្នកដំណើរការ។</p>
+                        
+                        <h2>គន្លឹះបន្ថែមសម្រាប់ Portfolio ដ៏ល្អ</h2>
+                        <ul>
+                            <li><strong>ធ្វើឱ្យវាងាយស្រួលរកមើល</strong> - ប្រើរចនាប័ទ្មដែលសាមញ្ញ និងងាយស្រួលរុករក</li>
+                            <li><strong>បង្ហាញពីដំណើរការអភិវឌ្ឍន៍</strong> - បង្ហាញពីរបៀបដែលអ្នកដោះស្រាយបញ្ហា</li>
+                            <li><strong>ធ្វើបច្ចុប្បន្នភាពជាប្រចាំ</strong> - បន្ថែមគម្រោងថ្មីៗ និងជំនាញថ្មីៗ</li>
+                            <li><strong>បង្ហាញពីបុគ្គលិកលក្ខណៈ</strong> - រួមបញ្ចូលព័ត៌មានមួយចំនួនអំពីខ្លួនអ្នក និងចំណង់ចំណូលចិត្ត</li>
+                        </ul>
+                        
+                        <p>ចងចាំថា portfolio របស់អ្នកគឺជាតំណាងអនឡាញរបស់អ្នក។ ធ្វើឱ្យវាល្អ ធ្វើឱ្យវាពិត ហើយធ្វើឱ្យវាបង្ហាញពីអ្នកជាអ្នកអភិវឌ្ឍន៍!</p>
+                    `
+                },
+                {
+                    id: 4,
+                    title: 'ទិន្នន័យ Web Development ឆ្នាំ ២០២៤',
+                    excerpt: 'Web development បន្តវិវត្តន៍យ៉ាងឆាប់រហ័ស។ អត្ថបទនេះនឹងណែនាំអ្នកពីទិន្នន័យចុងក្រោយបំផុតនៅឆ្នាំ ២០២៤',
+                    date: '០១ ខែមករា ២០២៤',
+                    author: 'ផល្លី សំអាត',
+                    category: 'Web Development',
+                    readTime: '១០ នាទី',
+                    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                    content: `
+                        <h2>ទិន្នន័យ Front-end Development ឆ្នាំ ២០២៤</h2>
+                        <h3>១. Frameworks និង Libraries ដែលពេញនិយម</h3>
+                        <p>នៅឆ្នាំ ២០២៤ យើងនៅតែឃើញ React ជាប្រព័ន្ធ Front-end ដែលពេញនិយមបំផុត៖</p>
+                        <ul>
+                            <li><strong>React</strong> - នៅតែជាជម្រើសដែលពេញនិយមបំផុត</li>
+                            <li><strong>Vue.js</strong> - កំពុងកើនឡើងនូវភាពពេញនិយម</li>
+                            <li><strong>Svelte</strong> - កំពុងទាក់ទាញអ្នកអភិវឌ្ឍន៍ជាច្រើន</li>
+                            <li><strong>Solid.js</strong> - ជាប្រព័ន្ធ Front-end ថ្មីដែលកំពុងកើនឡើង</li>
+                        </ul>
+                        
+                        <h3>២. State Management</h3>
+                        <p>សម្រាប់ State Management នៅក្នុង React៖</p>
+                        <ul>
+                            <li><strong>Zustand</strong> - កំពុងក្លាយជាជម្រើសដ៏ពេញនិយម</li>
+                            <li><strong>Redux Toolkit</strong> - នៅតែត្រូវបានប្រើប្រាស់យ៉ាងទូលំទូលាយ</li>
+                            <li><strong>Context API</strong> - សម្រាប់ state management សាមញ្ញ</li>
+                        </ul>
+                        
+                        <h2>ទិន្នន័យ Back-end Development ឆ្នាំ ២០២៤</h2>
+                        <h3>១. Server-Side Frameworks</h3>
+                        <p>នៅក្នុងពិភព Back-end៖</p>
+                        <ul>
+                            <li><strong>Node.js</strong> - នៅតែជាជម្រើសដ៏ពេញនិយម</li>
+                            <li><strong>Python (Django, Flask)</strong> - កំពុងកើនឡើងនូវភាពពេញនិយម</li>
+                            <li><strong>Go</strong> - សម្រាប់ performance ខ្ពស់</li>
+                            <li><strong>Rust</strong> - សម្រាប់ system programming</li>
+                        </ul>
+                        
+                        <h3>២. Databases</h3>
+                        <p>ទិន្នន័យនៃការប្រើប្រាស់ Database៖</p>
+                        <ul>
+                            <li><strong>PostgreSQL</strong> - ជាជម្រើស relational database ដ៏ពេញនិយម</li>
+                            <li><strong>MongoDB</strong> - នៅតែជា NoSQL database ដ៏ពេញនិយម</li>
+                            <li><strong>Redis</strong> - សម្រាប់ caching និង session storage</li>
+                            <li><strong>Supabase</strong> - កំពុងក្លាយជា Firebase alternative</li>
+                        </ul>
+                        
+                        <h2>ទិន្នន័យ Development Tools ឆ្នាំ ២០២៤</h2>
+                        <h3>១. Package Managers</h3>
+                        <ul>
+                            <li><strong>npm</strong> - នៅតែជាប្រព័ន្ធ package manager ដ៏ពេញនិយមបំផុត</li>
+                            <li><strong>yarn</strong> - កំពុងត្រូវបានប្រើប្រាស់យ៉ាងទូលំទូលាយ</li>
+                            <li><strong>pnpm</strong> - កំពុងកើនឡើងនូវភាពពេញនិយម</li>
+                        </ul>
+                        
+                        <h3>២. Build Tools</h3>
+                        <ul>
+                            <li><strong>Vite</strong> - កំពុងក្លាយជាជម្រើស build tool ដ៏ពេញនិយម</li>
+                            <li><strong>Webpack</strong> - នៅតែត្រូវបានប្រើប្រាស់យ៉ាងទូលំទូលាយ</li>
+                            <li><strong>Turbopack</strong> - ជា build tool ថ្មីពី Vercel</li>
+                        </ul>
+                        
+                        <h2>ទិន្នន័យ Deployment និង Hosting ឆ្នាំ ២០២៤</h2>
+                        <h3>១. Cloud Platforms</h3>
+                        <ul>
+                            <li><strong>Vercel</strong> - ពេញនិយមសម្រាប់ Front-end deployment</li>
+                            <li><strong>Netlify</strong> - ជម្រើសដ៏ពេញនិយមមួយទៀត</li>
+                            <li><strong>AWS</strong> - នៅតែជា cloud platform ធំជាងគេ</li>
+                            <li><strong>Google Cloud</strong> - កំពុងកើនឡើងនូវភាពពេញនិយម</li>
+                        </ul>
+                        
+                        <h3>២. Containerization</h3>
+                        <ul>
+                            <li><strong>Docker</strong> - នៅតែជាឧបករណ៍ containerization ដ៏ពេញនិយម</li>
+                            <li><strong>Kubernetes</strong> - សម្រាប់ container orchestration</li>
+                        </ul>
+                        
+                        <p>សរុបមក Web development នៅឆ្នាំ ២០២៤ បន្តវិវត្តន៍យ៉ាងឆាប់រហ័ស ជាមួយនឹងបច្ចេកវិទ្យាថ្មីៗ និង tools ថ្មីៗដែលលេចឡើងជាប្រចាំ។ ការស្វែងយល់ពីទិន្នន័យថ្មីៗទាំងនេះអាចជួយអ្នកក្នុងការធ្វើការសម្រេចចិត្តដ៏ល្អសម្រាប់គម្រោងបន្ទាប់របស់អ្នក។</p>
+                    `
+                }
+            ];
+
+            // Page Components
+            const HomePage = () => {
+                const [displayText, setDisplayText] = useState('');
+                const [currentIndex, setCurrentIndex] = useState(0);
+                const fullText = "រៀនផ្នែកបច្ចេកវិទ្យា";
+
+                useEffect(() => {
+                    if (currentIndex < fullText.length) {
+                        const timeout = setTimeout(() => {
+                            setDisplayText(prev => prev + fullText[currentIndex]);
+                            setCurrentIndex(prev => prev + 1);
+                        }, 100);
+                        return () => clearTimeout(timeout);
+                    }
+                }, [currentIndex, fullText]);
+
+                return (
+                    <div className="min-h-screen">
+                        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-gray-900 to-purple-900">
+                            <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl floating"></div>
+                            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl floating" style={{animationDelay: '2s'}}></div>
+                            
+                            <div className="container mx-auto px-4 relative z-10">
+                                <div className="max-w-6xl mx-auto text-center fade-in">
+                                    <div className="mb-8">
+                                        <div className="inline-block px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 mb-8">
+                                            <span className="text-white font-bold text-lg">🚀 ស្វាគមន៍មកកាន់ Khmer Tech Academy</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-8 font-khmer text-white leading-tight">
+                                        <span className="typewriter text-gradient-gold neon-text">{displayText}</span>
+                                    </h1>
+                                    
+                                    <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-gray-200 max-w-4xl mx-auto leading-relaxed">
+                                        យើងផ្តល់វគ្គសិក្សាដ៏ល្អប្រសើរបំផុតសម្រាប់<span className="text-yellow-300 font-bold">អ្នកចាប់ផ្ដើម</span> រៀនពីការសរសេរកូដ និងការអភិវឌ្ឍកម្មវិធីជាមួយ<span className="text-yellow-300 font-bold">គ្រូដែលមានជំនាញ</span>
+                                    </p>
+                                    
+                                    <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16">
+                                        <button 
+                                            onClick={() => navigateTo('courses')}
+                                            className="group px-10 py-5 gradient-gold text-gray-900 rounded-2xl font-black text-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center gap-4"
+                                        >
+                                            <i className="fas fa-play-circle text-2xl group-hover:scale-125 transition-transform"></i>
+                                            ចាប់ផ្ដើមរៀន
+                                            <i className="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                                        </button>
+                                        <button 
+                                            onClick={() => navigateTo('features')}
+                                            className="group px-10 py-5 glass-effect text-white border-2 border-yellow-400 rounded-2xl font-black text-xl hover:bg-yellow-400 hover:text-gray-900 transition-all duration-300 hover:scale-110 flex items-center justify-center gap-4"
+                                        >
+                                            <i className="fas fa-gem text-2xl group-hover:rotate-180 transition-transform"></i>
+                                            លក្ខណៈពិសេស
+                                        </button>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+                                        {[
+                                            { number: '១០០០+', label: 'សិស្ស' },
+                                            { number: '៥០+', label: 'វគ្គសិក្សា' },
+                                            { number: '២០+', label: 'គ្រូបង្រៀន' },
+                                            { number: '៩៥%', label: 'ជោគជ័យ' }
+                                        ].map((stat, index) => (
+                                            <div key={index} className="glass-effect rounded-2xl p-4 text-center hover-lift stats-card">
+                                                <div className="text-2xl md:text-3xl font-black text-yellow-300 mb-1">{stat.number}</div>
+                                                <div className="text-gray-300 text-sm">{stat.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                                <div className="w-6 h-10 border-2 border-yellow-400 rounded-full flex justify-center">
+                                    <div className="w-1 h-3 bg-yellow-400 rounded-full mt-2"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Featured Courses */}
+                        <section className="py-20 bg-white">
+                            <div className="container mx-auto px-4">
+                                <div className="text-center mb-16">
+                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-khmer">វគ្គសិក្សាពេញនិយម</h2>
+                                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                                        រកមើលវគ្គសិក្សាដែលពេញនិយមបំផុតរបស់យើងដែលត្រៀមខ្លួនជួយអ្នកក្លាយជាអ្នកអភិវឌ្ឍន៍វិជ្ជាជីវៈ
+                                    </p>
+                                </div>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    {coursesData.slice(0, 3).map((course, index) => (
+                                        <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border border-gray-200 cursor-pointer" onClick={() => navigateTo('course-detail', course)}>
+                                            <div className={`h-2 bg-gradient-to-r ${course.color}`}></div>
+                                            <div className="p-6">
+                                                <div className={`w-16 h-16 bg-gradient-to-r ${course.color} rounded-2xl flex items-center justify-center mb-4 mx-auto`}>
+                                                    <i className={`${course.icon} text-white text-2xl`}></i>
+                                                </div>
+                                                <h3 className="text-xl font-bold text-gray-800 mb-3 font-khmer text-center">{course.title}</h3>
+                                                <p className="text-gray-600 mb-4 text-center">{course.description}</p>
+                                                <div className="text-center">
+                                                    <span className={`inline-block px-3 py-1 rounded-full text-sm font-bold ${
+                                                        course.price === 'ឥតគិតថ្លៃ' 
+                                                            ? 'bg-green-100 text-green-800' 
+                                                            : 'bg-blue-100 text-blue-800'
+                                                    }`}>
+                                                        {course.price}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                
+                                <div className="text-center mt-12">
+                                    <button 
+                                        onClick={() => navigateTo('courses')}
+                                        className="px-8 py-4 gradient-primary text-white rounded-2xl font-bold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 mx-auto"
+                                    >
+                                        <span>មើលវគ្គសិក្សាទាំងអស់</span>
+                                        <i className="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                );
+            };
+
+            const CoursesPage = () => {
+                const [activeTab, setActiveTab] = useState('all');
+
+                const filteredCourses = coursesData.filter(course => {
+                    if (activeTab === 'all') return true;
+                    if (activeTab === 'free') return course.price === 'ឥតគិតថ្លៃ';
+                    if (activeTab === 'paid') return course.price === 'គិតថ្លៃ';
+                    return true;
+                });
+
+                return (
+                    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+                        <div className="container mx-auto px-4 py-12">
+                            <div className="text-center mb-12">
+                                <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-6 font-khmer">
+                                    <span className="text-gradient">វគ្គសិក្សាទាំងអស់</span>
+                                </h1>
+                                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                    រកមើលវគ្គសិក្សាដែលពេញនិយមបំផុតរបស់យើងដែលត្រៀមខ្លួនជួយអ្នកក្លាយជាអ្នកអភិវឌ្ឍន៍វិជ្ជាជីវៈ
+                                </p>
+                            </div>
+
+                            {/* Tabs */}
+                            <div className="flex justify-center mb-12">
+                                <div className="bg-white rounded-2xl p-2 shadow-lg flex">
+                                    <button
+                                        onClick={() => setActiveTab('all')}
+                                        className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+                                            activeTab === 'all' 
+                                                ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
+                                                : 'text-gray-600 hover:text-blue-600'
+                                        }`}
+                                    >
+                                        ទាំងអស់
+                                    </button>
+                                    <button
+                                        onClick={() => setActiveTab('free')}
+                                        className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+                                            activeTab === 'free' 
+                                                ? 'bg-gradient-to-r from-green-500 to-teal-600 text-white' 
+                                                : 'text-gray-600 hover:text-green-600'
+                                        }`}
+                                    >
+                                        ឥតគិតថ្លៃ
+                                    </button>
+                                    <button
+                                        onClick={() => setActiveTab('paid')}
+                                        className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+                                            activeTab === 'paid' 
+                                                ? 'bg-gradient-to-r from-yellow-500 to-orange-600 text-white' 
+                                                : 'text-gray-600 hover:text-orange-600'
+                                        }`}
+                                    >
+                                        គិតថ្លៃ
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Courses Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {filteredCourses.map((course, index) => (
+                                    <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border border-gray-200 cursor-pointer" onClick={() => navigateTo('course-detail', course)}>
+                                        <div className={`h-2 bg-gradient-to-r ${course.color}`}></div>
+                                        <div className="p-6">
+                                            <div className={`w-16 h-16 bg-gradient-to-r ${course.color} rounded-2xl flex items-center justify-center mb-4 mx-auto`}>
+                                                <i className={`${course.icon} text-white text-2xl`}></i>
+                                            </div>
+                                            
+                                            <div className="text-center mb-4">
+                                                <span className={`inline-block px-3 py-1 rounded-full text-sm font-bold mb-2 ${
+                                                    course.price === 'ឥតគិតថ្លៃ' 
+                                                        ? 'bg-green-100 text-green-800' 
+                                                        : 'bg-blue-100 text-blue-800'
+                                                }`}>
+                                                    {course.price}
+                                                </span>
+                                                <span className="inline-block bg-gray-100 text-gray-800 text-sm font-bold px-3 py-1 rounded-full ml-2">
+                                                    {course.level}
+                                                </span>
+                                            </div>
+                                            
+                                            <h3 className="text-xl font-bold text-gray-800 mb-3 font-khmer text-center">{course.title}</h3>
+                                            <p className="text-gray-600 mb-6 text-center">{course.description}</p>
+                                            
+                                            <div className="flex justify-between text-gray-500 text-sm mb-6">
+                                                <span className="flex items-center gap-2">
+                                                    <i className="far fa-clock"></i>
+                                                    {course.duration}
+                                                </span>
+                                                <span className="flex items-center gap-2">
+                                                    <i className="fas fa-user-graduate"></i>
+                                                    {course.students}
+                                                </span>
+                                            </div>
+                                            
+                                            <button className="w-full py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3">
+                                                <span>ស្វែងយល់បន្ថែម</span>
+                                                <i className="fas fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const CourseDetailPage = () => {
+                if (!currentCourse) {
+                    return (
+                        <div className="min-h-screen pt-20 flex items-center justify-center">
+                            <div className="text-center">
+                                <div className="text-6xl mb-4">😕</div>
+                                <h2 className="text-2xl font-bold mb-2">មិនមានព័ត៌មានវគ្គសិក្សា</h2>
+                                <button 
+                                    onClick={() => navigateTo('courses')}
+                                    className="mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg"
+                                >
+                                    ត្រឡប់ទៅវគ្គសិក្សា
+                                </button>
+                            </div>
+                        </div>
+                    );
+                }
+
+                return (
+                    <div className="min-h-screen pt-20">
+                        {/* Hero Section */}
+                        <section className={`course-hero py-20 text-white`}>
+                            <div className="container mx-auto px-4">
+                                <div className="max-w-4xl mx-auto text-center">
+                                    <button 
+                                        onClick={() => navigateTo('courses')}
+                                        className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                                    >
+                                        <i className="fas fa-arrow-left"></i>
+                                        <span>ត្រឡប់ទៅវគ្គសិក្សា</span>
+                                    </button>
+                                    
+                                    <div className={`w-20 h-20 ${currentCourse.bgColor} rounded-2xl flex items-center justify-center text-white mb-6 mx-auto`}>
+                                        <i className={`${currentCourse.icon} text-3xl`}></i>
+                                    </div>
+                                    
+                                    <h1 className="text-4xl md:text-5xl font-black mb-4 font-khmer">{currentCourse.title}</h1>
+                                    <p className="text-xl mb-8 max-w-2xl mx-auto">{currentCourse.fullDescription}</p>
+                                    
+                                    <div className="flex flex-wrap justify-center gap-4 mb-8">
+                                        <span className={`px-4 py-2 rounded-full font-bold ${
+                                            currentCourse.price === 'ឥតគិតថ្លៃ' 
+                                                ? 'bg-green-500' 
+                                                : 'bg-blue-500'
+                                        }`}>
+                                            {currentCourse.price}
+                                        </span>
+                                        <span className="px-4 py-2 bg-purple-500 rounded-full font-bold">{currentCourse.level}</span>
+                                        <span className="px-4 py-2 bg-yellow-500 text-gray-900 rounded-full font-bold">{currentCourse.duration}</span>
+                                        <span className="px-4 py-2 bg-pink-500 rounded-full font-bold">{currentCourse.language}</span>
+                                    </div>
+                                    
+                                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                        <button className="px-8 py-4 bg-white text-gray-900 rounded-2xl font-bold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3">
+                                            <i className="fas fa-play-circle"></i>
+                                            <span>ចាប់ផ្ដើមរៀនឥឡូវនេះ</span>
+                                        </button>
+                                        <button className="px-8 py-4 border-2 border-white text-white rounded-2xl font-bold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                                            <i className="far fa-heart mr-2"></i>
+                                            ចូលចិត្ត
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Course Details */}
+                        <section className="py-16 bg-white">
+                            <div className="container mx-auto px-4">
+                                <div className="max-w-6xl mx-auto">
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                                        {/* Main Content */}
+                                        <div className="lg:col-span-2">
+                                            <div className="mb-12">
+                                                <h2 className="text-3xl font-black text-gray-800 mb-6 font-khmer border-l-4 border-blue-500 pl-4">អំពីវគ្គសិក្សានេះ</h2>
+                                                <p className="text-gray-600 text-lg leading-relaxed">
+                                                    {currentCourse.fullDescription}
+                                                </p>
+                                            </div>
+                                            
+                                            <div className="mb-12">
+                                                <h2 className="text-3xl font-black text-gray-800 mb-6 font-khmer border-l-4 border-green-500 pl-4">អ្វីដែលអ្នកនឹងរៀន</h2>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    {currentCourse.modules.map((module, index) => (
+                                                        <div key={index} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                                            <i className="fas fa-check text-green-500 mt-1"></i>
+                                                            <span>{module}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            
+                                            <div>
+                                                <h2 className="text-3xl font-black text-gray-800 mb-6 font-khmer border-l-4 border-purple-500 pl-4">តម្រូវការ</h2>
+                                                <div className="space-y-3">
+                                                    {currentCourse.requirements.map((requirement, index) => (
+                                                        <div key={index} className="flex items-start gap-3">
+                                                            <i className="fas fa-circle text-xs text-purple-500 mt-2"></i>
+                                                            <span className="text-gray-600">{requirement}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Sidebar */}
+                                        <div className="lg:col-span-1">
+                                            <div className="bg-gray-50 rounded-2xl p-6 sticky top-24">
+                                                <h3 className="text-2xl font-black text-gray-800 mb-6 font-khmer text-center">ព័ត៌មានវគ្គសិក្សា</h3>
+                                                
+                                                <div className="space-y-4 mb-6">
+                                                    <div className="flex justify-between">
+                                                        <span className="text-gray-600">ថ្លៃឈ្នួល:</span>
+                                                        <span className={`font-bold ${
+                                                            currentCourse.price === 'ឥតគិតថ្លៃ' ? 'text-green-600' : 'text-blue-600'
+                                                        }`}>
+                                                            {currentCourse.price}
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <span className="text-gray-600">កម្រិត:</span>
+                                                        <span className="font-bold text-gray-800">{currentCourse.level}</span>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <span className="text-gray-600">រយៈពេល:</span>
+                                                        <span className="font-bold text-gray-800">{currentCourse.duration}</span>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <span className="text-gray-600">ភាសា:</span>
+                                                        <span className="font-bold text-gray-800">{currentCourse.language}</span>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <span className="text-gray-600">គម្រោង:</span>
+                                                        <span className="font-bold text-gray-800">{currentCourse.projects} គម្រោង</span>
+                                                    </div>
+                                                    <div className="flex justify-between">
+                                                        <span className="text-gray-600">សិស្ស:</span>
+                                                        <span className="font-bold text-gray-800">{currentCourse.students}</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className="mb-6">
+                                                    <h4 className="font-bold text-gray-800 mb-3">គ្រូបង្រៀន</h4>
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                                            {currentCourse.instructor.charAt(0)}
+                                                        </div>
+                                                        <div>
+                                                            <div className="font-bold text-gray-800">{currentCourse.instructor}</div>
+                                                            <div className="text-sm text-gray-600">គ្រូបង្រៀនជំនាញ</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <button className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl font-bold hover:shadow-xl transition-all duration-300 mb-4">
+                                                    <i className="fas fa-play-circle mr-2"></i>
+                                                    ចាប់ផ្ដើមរៀនឥឡូវនេះ
+                                                </button>
+                                                
+                                                <button className="w-full py-4 border-2 border-blue-500 text-blue-500 rounded-2xl font-bold hover:bg-blue-50 transition-all duration-300">
+                                                    <i className="far fa-heart mr-2"></i>
+                                                    ចូលចិត្តវគ្គសិក្សា
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        {/* Related Courses */}
+                        <section className="py-16 bg-gray-50">
+                            <div className="container mx-auto px-4">
+                                <div className="max-w-6xl mx-auto">
+                                    <h2 className="text-3xl font-black text-gray-800 mb-2 font-khmer text-center">វគ្គសិក្សាពាក់ព័ន្ធ</h2>
+                                    <p className="text-gray-600 text-center mb-12">រកមើលវគ្គសិក្សាផ្សេងទៀតដែលអ្នកអាចចាប់អារម្មណ៍</p>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                        {coursesData
+                                            .filter(course => course.id !== currentCourse.id)
+                                            .slice(0, 3)
+                                            .map((course, index) => (
+                                                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift border border-gray-200 cursor-pointer" onClick={() => navigateTo('course-detail', course)}>
+                                                    <div className={`h-2 bg-gradient-to-r ${course.color}`}></div>
+                                                    <div className="p-6">
+                                                        <div className={`w-16 h-16 bg-gradient-to-r ${course.color} rounded-2xl flex items-center justify-center mb-4 mx-auto`}>
+                                                            <i className={`${course.icon} text-white text-2xl`}></i>
+                                                        </div>
+                                                        <h3 className="text-xl font-bold text-gray-800 mb-3 font-khmer text-center">{course.title}</h3>
+                                                        <p className="text-gray-600 mb-4 text-center">{course.description}</p>
+                                                        <div className="text-center">
+                                                            <span className={`inline-block px-3 py-1 rounded-full text-sm font-bold ${
+                                                                course.price === 'ឥតគិតថ្លៃ' 
+                                                                    ? 'bg-green-100 text-green-800' 
+                                                                    : 'bg-blue-100 text-blue-800'
+                                                            }`}>
+                                                                {course.price}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                );
+            };
+
+            const FeaturesPage = () => {
+                const features = [
+                    {
+                        icon: 'fas fa-chalkboard-teacher',
+                        title: 'បង្រៀនដោយអ្នកជំនាញ',
+                        description: 'បង្រៀនដោយអ្នកជំនាញក្នុងឧស្សាហកម្មដែលមានបទពិសោធន៍ជាក់ស្ដែង និងចំណេះដឹងទាន់សម័យ',
+                        color: 'from-purple-500 to-pink-500'
+                    },
+                    {
+                        icon: 'fas fa-laptop-code',
+                        title: 'ការអនុវត្តជាក់ស្ដែង',
+                        description: 'វគ្គសិក្សាផ្តោតលើការអនុវត្តជាក់ស្ដែងជាមួយនឹងគម្រោងជាក់ស្ដែងដែលអាចបង្កើតបាននៅក្នុងជីវិតរស់នៅ',
+                        color: 'from-blue-500 to-cyan-500'
+                    },
+                    {
+                        icon: 'fas fa-users',
+                        title: 'សហគមន៍',
+                        description: 'ចូលរួមក្នុងសហគមន៍សិស្ស និងអ្នកជំនាញដើម្បីចែករំលែកចំណេះដឹង និងទទួលបានជំនួយ',
+                        color: 'from-green-500 to-teal-500'
+                    },
+                    {
+                        icon: 'fas fa-briefcase',
+                        title: 'ការងារ',
+                        description: 'ទទួលបានការណែនាំអំពីការស្វែងរកការងារ និងការរៀបចំសៀវភៅការងារ',
+                        color: 'from-orange-500 to-red-500'
+                    },
+                    {
+                        icon: 'fas fa-certificate',
+                        title: 'សញ្ញាបត្រទទួលស្គាល់',
+                        description: 'ទទួលបានសញ្ញាបត្រដែលទទួលស្គាល់ជាផ្លូវការបន្ទាប់ពីបញ្ចប់វគ្គសិក្សាដោយជោគជ័យ',
+                        color: 'from-yellow-500 to-amber-500'
+                    },
+                    {
+                        icon: 'fas fa-infinity',
+                        title: 'រៀនគ្រប់ពេលវេលា',
+                        description: 'អាចរៀនបានគ្រប់ពេលវេលា និងទីតាំងតាមរយៈប្រព័ន្ធរៀនអនឡាញរបស់យើង',
+                        color: 'from-indigo-500 to-purple-500'
+                    }
+                ];
+
+                return (
+                    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50 to-purple-50">
+                        <div className="container mx-auto px-4 py-12">
+                            <div className="text-center mb-16">
+                                <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-6 font-khmer">
+                                    <span className="text-gradient">លក្ខណៈពិសេស</span>
+                                </h1>
+                                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                    ស្វែងយល់ពីលក្ខណៈពិសេសដែលធ្វើឱ្យ Khmer Tech Academy ខុសពីគេ និងជួយអ្នកក្លាយជាអ្នកអភិវឌ្ឍន៍វិជ្ជាជីវៈ
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {features.map((feature, index) => (
+                                    <div key={index} className="bg-white rounded-2xl p-8 shadow-lg feature-card border border-gray-200">
+                                        <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 mx-auto`}>
+                                            <i className={`${feature.icon} text-white text-2xl`}></i>
+                                        </div>
+                                        <h3 className="text-2xl font-black text-gray-800 mb-4 font-khmer text-center">{feature.title}</h3>
+                                        <p className="text-gray-600 text-center">{feature.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Stats Section */}
+                            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+                                {[
+                                    { number: '១០០០+', label: 'សិស្សសកម្ម' },
+                                    { number: '៩៥%', label: 'អត្រាជោគជ័យ' },
+                                    { number: '២៤/៧', label: 'ការគាំទ្រ' },
+                                    { number: '១០០%', label: 'ការធានាចំណេះដឹង' }
+                                ].map((stat, index) => (
+                                    <div key={index} className="bg-white rounded-2xl p-6 text-center shadow-lg stats-card">
+                                        <div className="text-3xl font-black text-blue-600 mb-2">{stat.number}</div>
+                                        <div className="text-gray-600 font-bold">{stat.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* CTA Section */}
+                            <div className="mt-20 text-center">
+                                <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-12 text-white">
+                                    <h2 className="text-3xl md:text-4xl font-black mb-6 font-khmer">រួចរាល់ក្លាយជាអ្នកអភិវឌ្ឍន៍វិជ្ជាជីវៈ?</h2>
+                                    <p className="text-xl mb-8 max-w-2xl mx-auto">
+                                        ចាប់ផ្ដើមដំណើរការរៀនសូត្ររបស់អ្នកថ្ងៃនេះ និងចូលរួមជាមួយសហគមន៍អ្នកអភិវឌ្ឍន៍ជាង ១០០០ នាក់
+                                    </p>
+                                    <button className="px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 mx-auto">
+                                        <span>ចាប់ផ្ដើមរៀន</span>
+                                        <i className="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const InstructorsPage = () => {
+                const instructors = [
+                    {
+                        name: 'វីរៈ សុភាព',
+                        role: 'Full-Stack Developer',
+                        avatar: 'វ',
+                        bio: 'មានបទពិសោធន៍ជាង ៥ ឆ្នាំក្នុងការអភិវឌ្ឍ Web Applications និង Mobile Apps',
+                        expertise: ['React', 'Node.js', 'MongoDB'],
+                        courses: 8,
+                        students: 350,
+                        color: 'from-blue-500 to-purple-600'
+                    },
+                    {
+                        name: 'សុខុម ស្រីណេត',
+                        role: 'Data Scientist',
+                        avatar: 'ស',
+                        bio: 'អ្នកជំនាញក្នុងវិស័យ Data Science និង Machine Learning ដោយប្រើ Python',
+                        expertise: ['Python', 'TensorFlow', 'SQL'],
+                        courses: 6,
+                        students: 280,
+                        color: 'from-green-500 to-teal-600'
+                    },
+                    {
+                        name: 'សុផល សោភ័ណ',
+                        role: 'UI/UX Designer',
+                        avatar: 'ស',
+                        bio: 'អ្នករចនា Interface និង User Experience សម្រាប់គេហទំព័រ និងកម្មវិធី',
+                        expertise: ['Figma', 'Adobe XD', 'Prototyping'],
+                        courses: 5,
+                        students: 200,
+                        color: 'from-red-500 to-orange-600'
+                    },
+                    {
+                        name: 'ផល្លី សំអាត',
+                        role: 'Python Developer',
+                        avatar: 'ផ',
+                        bio: 'អ្នកជំនាញក្នុងការអភិវឌ្ឍកម្មវិធីដោយប្រើ Python សម្រាប់ Web Development និង Data Science',
+                        expertise: ['Python', 'Django', 'Data Analysis'],
+                        courses: 7,
+                        students: 320,
+                        color: 'from-yellow-500 to-orange-600'
+                    }
+                ];
+
+                return (
+                    <div className="min-h-screen pt-20 bg-gradient-to-br from-purple-50 to-pink-50">
+                        <div className="container mx-auto px-4 py-12">
+                            <div className="text-center mb-16">
+                                <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-6 font-khmer">
+                                    <span className="text-gradient">គ្រូបង្រៀន</span>
+                                </h1>
+                                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                    ស្វែងយល់ពីគ្រូបង្រៀនដែលមានជំនាញរបស់យើងដែលមានបទពិសោធន៍ក្នុងឧស្សាហកម្ម
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {instructors.map((instructor, index) => (
+                                    <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden instructor-card border border-gray-200">
+                                        <div className="p-6 text-center">
+                                            <div className={`w-20 h-20 bg-gradient-to-r ${instructor.color} rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4`}>
+                                                {instructor.avatar}
+                                            </div>
+                                            <h3 className="text-xl font-black text-gray-800 mb-2">{instructor.name}</h3>
+                                            <p className="text-blue-600 font-bold mb-4">{instructor.role}</p>
+                                            <p className="text-gray-600 text-sm mb-4">{instructor.bio}</p>
+                                            
+                                            <div className="mb-4">
+                                                <div className="text-sm font-bold text-gray-800 mb-2">ជំនាញ</div>
+                                                <div className="flex flex-wrap justify-center gap-2">
+                                                    {instructor.expertise.map((skill, i) => (
+                                                        <span key={i} className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">
+                                                            {skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex justify-between text-sm text-gray-600">
+                                                <div className="text-center">
+                                                    <div className="font-bold text-gray-800">{instructor.courses}</div>
+                                                    <div>វគ្គសិក្សា</div>
+                                                </div>
+                                                <div className="text-center">
+                                                    <div className="font-bold text-gray-800">{instructor.students}</div>
+                                                    <div>សិស្ស</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* CTA Section */}
+                            <div className="mt-20 text-center">
+                                <div className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-3xl p-12 text-white">
+                                    <h2 className="text-3xl md:text-4xl font-black mb-6 font-khmer">ចង់ក្លាយជាគ្រូបង្រៀន?</h2>
+                                    <p className="text-xl mb-8 max-w-2xl mx-auto">
+                                        ប្រសិនបើអ្នកមានជំនាញក្នុងវិស័យបច្ចេកវិទ្យា និងចង់ចែករំលែកចំណេះដឹងរបស់អ្នក យើងនឹងរីករាយដែលមានអ្នកក្នុងក្រុមរបស់យើង
+                                    </p>
+                                    <button className="px-8 py-4 bg-white text-purple-600 rounded-2xl font-bold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 mx-auto">
+                                        <span>ដាក់ពាក្យ</span>
+                                        <i className="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const TestimonialsPage = () => {
+                const testimonials = [
+                    {
+                        name: 'សុខគា',
+                        role: 'Full-Stack Developer',
+                        avatar: 'ស',
+                        text: 'បានរៀន Web Development ពី Khmer Tech Academy ហើយឥឡូវខ្ញុំអាចបង្កើតកម្មវិធីផ្ទាល់ខ្លួនបាន។ ការបង្រៀនគឺល្អឥតខ្ចោះ!',
+                        rating: 5,
+                        company: 'Tech Cambodia',
+                        color: 'from-blue-500 to-purple-600'
+                    },
+                    {
+                        name: 'មាស',
+                        role: 'Data Scientist',
+                        avatar: 'ម',
+                        text: 'វគ្គសិក្សា Python បានផ្តល់ឱ្យខ្ញុំនូវមូលដ្ឋានគ្រឹះដ៏រឹងមាំ ហើយឥឡូវខ្ញុំអាចធ្វើការជាមួយទិន្នន័យ និង Machine Learning បាន។',
+                        rating: 5,
+                        company: 'Data Insights Co.',
+                        color: 'from-green-500 to-teal-600'
+                    },
+                    {
+                        name: 'វិចិត្រ',
+                        role: 'Mobile App Developer',
+                        avatar: 'វ',
+                        text: 'បានរៀនការអភិវឌ្ឍកម្មវិធីម៉ូបាយពីកម្រិតដំបូង។ ឥឡូវខ្ញុំអាចបង្កើតកម្មវិធីសម្រាប់ទាំង iOS និង Android!',
+                        rating: 5,
+                        company: 'App Innovations',
+                        color: 'from-yellow-500 to-orange-600'
+                    },
+                    {
+                        name: 'ស្រីណេត',
+                        role: 'UI/UX Designer',
+                        avatar: 'ស',
+                        text: 'ការបង្រៀនរបស់គ្រូគឺច្បាស់លាស់ និងងាយស្រួលយល់។ ខ្ញុំបានរៀនពីការរចនា UI/UX ហើយឥឡូវអាចបង្កើតការរចនាដែលទាក់ទាញអ្នកប្រើប្រាស់បាន។',
+                        rating: 5,
+                        company: 'Design Studio',
+                        color: 'from-red-500 to-orange-600'
+                    }
+                ];
+
+                return (
+                    <div className="min-h-screen pt-20 bg-gradient-to-br from-amber-50 to-orange-50">
+                        <div className="container mx-auto px-4 py-12">
+                            <div className="text-center mb-16">
+                                <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-6 font-khmer">
+                                    <span className="text-gradient">មតិអ្នកប្រើ</span>
+                                </h1>
+                                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                    ស្វែងយល់ពីបទពិសោធន៍របស់សិស្សដែលបានរៀនជាមួយយើង និងរបៀបដែលពួកគេបានជោគជ័យក្នុងការអភិវឌ្ឍន៍ជំនាញរបស់ពួកគេ
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                {testimonials.map((testimonial, index) => (
+                                    <div key={index} className="bg-white rounded-2xl p-8 shadow-lg testimonial-card border border-gray-200">
+                                        <div className="flex mb-4">
+                                            {[...Array(testimonial.rating)].map((_, i) => (
+                                                <i key={i} className="fas fa-star text-yellow-400 text-lg mr-1"></i>
+                                            ))}
+                                        </div>
+                                        
+                                        <p className="text-gray-600 text-lg leading-relaxed mb-8 italic">
+                                            "{testimonial.text}"
+                                        </p>
+                                        
+                                        <div className="flex items-center">
+                                            <div className={`w-16 h-16 bg-gradient-to-r ${testimonial.color} rounded-2xl flex items-center justify-center text-white font-bold text-2xl mr-4`}>
+                                                {testimonial.avatar}
+                                            </div>
+                                            <div>
+                                                <h4 className="font-black text-gray-800 text-xl">{testimonial.name}</h4>
+                                                <p className="text-blue-600 font-bold">{testimonial.role}</p>
+                                                <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Stats Section */}
+                            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+                                {[
+                                    { number: '១០០០+', label: 'សិស្សរួម' },
+                                    { number: '៩៨%', label: 'អត្រាសម្រាក' },
+                                    { number: '៤.៩/៥.០', label: 'ការវាយតម្លៃជាមធ្យម' },
+                                    { number: '៣០០+', label: 'ការងារដែលបានរកឃើញ' }
+                                ].map((stat, index) => (
+                                    <div key={index} className="bg-white rounded-2xl p-6 text-center shadow-lg stats-card">
+                                        <div className="text-3xl font-black text-orange-600 mb-2">{stat.number}</div>
+                                        <div className="text-gray-600 font-bold">{stat.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const BlogPage = () => {
+                return (
+                    <div className="min-h-screen pt-20 bg-gradient-to-br from-green-50 to-teal-50">
+                        <div className="container mx-auto px-4 py-12">
+                            <div className="text-center mb-16">
+                                <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-6 font-khmer">
+                                    <span className="text-gradient">អត្ថបទ</span>
+                                </h1>
+                                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                    អានអត្ថបទ និងព័ត៌មានថ្មីៗអំពីវិស័យបច្ចេកវិទ្យា និងការអភិវឌ្ឍន៍ជំនាញវិជ្ជាជីវៈ
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {articlesData.map((article, index) => (
+                                    <div key={index} 
+                                         className="bg-white rounded-2xl shadow-lg overflow-hidden blog-card border border-gray-200 cursor-pointer"
+                                         onClick={() => navigateTo('article-detail', article)}>
+                                        <div className="h-48 overflow-hidden">
+                                            <img 
+                                                src={article.image} 
+                                                alt={article.title}
+                                                className="w-full h-full object-cover blog-image"
+                                            />
+                                        </div>
+                                        <div className="p-6">
+                                            <div className="flex justify-between items-center mb-4">
+                                                <span className="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full">
+                                                    {article.category}
+                                                </span>
+                                                <span className="text-gray-500 text-sm">{article.readTime}</span>
+                                            </div>
+                                            
+                                            <h3 className="text-xl font-black text-gray-800 mb-3 font-khmer">{article.title}</h3>
+                                            <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                                            
+                                            <div className="flex justify-between items-center">
+                                                <div>
+                                                    <div className="text-sm font-bold text-gray-800">{article.author}</div>
+                                                    <div className="text-gray-500 text-sm">{article.date}</div>
+                                                </div>
+                                                <button className="text-blue-600 hover:text-blue-800 font-bold flex items-center gap-2">
+                                                    <span>អានបន្ត</span>
+                                                    <i className="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Newsletter Subscription */}
+                            <div className="mt-20 bg-gradient-to-r from-green-500 to-teal-600 rounded-3xl p-8 text-white text-center">
+                                <h2 className="text-3xl font-black mb-4 font-khmer">ជាវអត្ថបទថ្មីៗ</h2>
+                                <p className="text-xl mb-6 max-w-2xl mx-auto">
+                                    ទទួលអត្ថបទ និងព័ត៌មានថ្មីៗអំពីវគ្គសិក្សាដោយផ្ទាល់ទៅកាន់អ៊ីមែលរបស់អ្នក
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                                    <input 
+                                        type="email" 
+                                        placeholder="អាសយដ្ឋានអ៊ីមែលរបស់អ្នក"
+                                        className="flex-1 px-4 py-3 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
+                                    />
+                                    <button className="px-6 py-3 bg-white text-green-600 rounded-xl font-bold hover:bg-gray-100 transition-colors">
+                                        ជាវ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const ArticleDetailPage = () => {
+                if (!currentArticle) {
+                    return (
+                        <div className="min-h-screen pt-20 flex items-center justify-center">
+                            <div className="text-center">
+                                <div className="text-6xl mb-4">😕</div>
+                                <h2 className="text-2xl font-bold mb-2">មិនមានព័ត៌មានអត្ថបទ</h2>
+                                <button 
+                                    onClick={() => navigateTo('blog')}
+                                    className="mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg"
+                                >
+                                    ត្រឡប់ទៅអត្ថបទ
+                                </button>
+                            </div>
+                        </div>
+                    );
+                }
+
+                return (
+                    <div className="min-h-screen pt-20 bg-white">
+                        {/* Article Hero Section */}
+                        <section className="relative py-20 bg-gradient-to-br from-green-50 to-teal-50">
+                            <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-500/10 rounded-full blur-3xl floating"></div>
+                            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl floating" style={{animationDelay: '2s'}}></div>
+                            
+                            <div className="container mx-auto px-4 relative z-10">
+                                <div className="max-w-4xl mx-auto">
+                                    <button 
+                                        onClick={() => navigateTo('blog')}
+                                        className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 rounded-full hover:bg-white transition-colors text-gray-700"
+                                    >
+                                        <i className="fas fa-arrow-left"></i>
+                                        <span>ត្រឡប់ទៅអត្ថបទ</span>
+                                    </button>
+                                    
+                                    <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+                                        <div className="flex justify-between items-center mb-6">
+                                            <span className="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full">
+                                                {currentArticle.category}
+                                            </span>
+                                            <span className="text-gray-500 text-sm">{currentArticle.readTime}</span>
+                                        </div>
+                                        
+                                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-800 mb-6 font-khmer leading-tight">
+                                            {currentArticle.title}
+                                        </h1>
+                                        
+                                        <div className="flex items-center gap-4 mb-8">
+                                            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold">
+                                                {currentArticle.author.charAt(0)}
+                                            </div>
+                                            <div>
+                                                <div className="font-bold text-gray-800">{currentArticle.author}</div>
+                                                <div className="text-gray-500 text-sm">{currentArticle.date}</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
+                                            <img 
+                                                src={currentArticle.image} 
+                                                alt={currentArticle.title}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        
+                                        <div 
+                                            className="article-content text-gray-700 leading-relaxed font-khmer"
+                                            dangerouslySetInnerHTML={{ __html: currentArticle.content }}
+                                        ></div>
+                                        
+                                        <div className="mt-12 pt-8 border-t border-gray-200">
+                                            <div className="flex flex-wrap gap-4">
+                                                <button className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors">
+                                                    <i className="far fa-thumbs-up"></i>
+                                                    <span>ចូលចិត្ត</span>
+                                                </button>
+                                                <button className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-600 rounded-full hover:bg-green-100 transition-colors">
+                                                    <i className="far fa-share-square"></i>
+                                                    <span>ចែករំលែក</span>
+                                                </button>
+                                                <button className="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-600 rounded-full hover:bg-purple-100 transition-colors">
+                                                    <i className="far fa-bookmark"></i>
+                                                    <span>រក្សាទុក</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Related Articles */}
+                        <section className="py-16 bg-gray-50">
+                            <div className="container mx-auto px-4">
+                                <div className="max-w-6xl mx-auto">
+                                    <h2 className="text-3xl font-black text-gray-800 mb-2 font-khmer text-center">អត្ថបទពាក់ព័ន្ធ</h2>
+                                    <p className="text-gray-600 text-center mb-12">អានអត្ថបទផ្សេងទៀតដែលអ្នកអាចចាប់អារម្មណ៍</p>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        {articlesData
+                                            .filter(article => article.id !== currentArticle.id)
+                                            .slice(0, 2)
+                                            .map((article, index) => (
+                                                <div key={index} 
+                                                     className="bg-white rounded-2xl shadow-lg overflow-hidden blog-card border border-gray-200 cursor-pointer"
+                                                     onClick={() => navigateTo('article-detail', article)}>
+                                                    <div className="h-48 overflow-hidden">
+                                                        <img 
+                                                            src={article.image} 
+                                                            alt={article.title}
+                                                            className="w-full h-full object-cover blog-image"
+                                                        />
+                                                    </div>
+                                                    <div className="p-6">
+                                                        <div className="flex justify-between items-center mb-4">
+                                                            <span className="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full">
+                                                                {article.category}
+                                                            </span>
+                                                            <span className="text-gray-500 text-sm">{article.readTime}</span>
+                                                        </div>
+                                                        
+                                                        <h3 className="text-xl font-black text-gray-800 mb-3 font-khmer">{article.title}</h3>
+                                                        <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                                                        
+                                                        <div className="flex justify-between items-center">
+                                                            <div>
+                                                                <div className="text-sm font-bold text-gray-800">{article.author}</div>
+                                                                <div className="text-gray-500 text-sm">{article.date}</div>
+                                                            </div>
+                                                            <button className="text-blue-600 hover:text-blue-800 font-bold flex items-center gap-2">
+                                                                <span>អានបន្ត</span>
+                                                                <i className="fas fa-arrow-right"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                );
+            };
+
+            // Header Component
+            const Header = () => {
+                const [isScrolled, setIsScrolled] = useState(false);
+                const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+                useEffect(() => {
+                    const handleScroll = () => {
+                        setIsScrolled(window.scrollY > 20);
+                    };
+
+                    window.addEventListener('scroll', handleScroll);
+                    return () => window.removeEventListener('scroll', handleScroll);
+                }, []);
+
+                const navItems = [
+                    { id: 'home', label: 'ទំព័រដើម', icon: 'fas fa-home' },
+                    { id: 'courses', label: 'វគ្គសិក្សា', icon: 'fas fa-book' },
+                    { id: 'features', label: 'លក្ខណៈពិសេស', icon: 'fas fa-star' },
+                    { id: 'instructors', label: 'គ្រូបង្រៀន', icon: 'fas fa-chalkboard-teacher' },
+                    { id: 'testimonials', label: 'មតិអ្នកប្រើ', icon: 'fas fa-comments' },
+                    { id: 'blog', label: 'អត្ថបទ', icon: 'fas fa-newspaper' }
+                ];
+
+                return (
+                    <>
+                        <header className={`fixed w-full z-40 transition-all duration-500 ${
+                            isScrolled 
+                                ? 'bg-white/95 backdrop-blur-xl shadow-2xl py-2' 
+                                : 'bg-transparent py-4'
+                        }`}>
+                            <div className="container mx-auto px-4">
+                                <div className="flex items-center justify-between">
+                                    <button 
+                                        onClick={() => navigateTo('home')}
+                                        className="flex items-center space-x-3 group"
+                                    >
+                                        <div className={`rounded-2xl flex items-center justify-center text-white shadow-lg transition-all duration-300 group-hover:scale-110 ${
+                                            isScrolled ? 'w-12 h-12 gradient-primary' : 'w-14 h-14 gradient-primary glow'
+                                        }`}>
+                                            <i className="fas fa-laptop-code text-xl"></i>
+                                        </div>
+                                        <div className={`transition-all duration-300 ${
+                                            isScrolled ? 'opacity-100' : 'opacity-100'
+                                        }`}>
+                                            <div className="text-gradient-gold font-khmer font-black leading-tight text-2xl">
+                                                Khmer Tech Academy
+                                            </div>
+                                            <div className="text-xs text-gray-600 hidden lg:block">
+                                                រៀនផ្នែកបច្ចេកវិទ្យាដោយឥតគិតថ្លៃ
+                                            </div>
+                                        </div>
+                                    </button>
+
+                                    <nav className="hidden lg:flex items-center space-x-1">
+                                        {navItems.map((item) => (
+                                            <button
+                                                key={item.id}
+                                                onClick={() => navigateTo(item.id)}
+                                                className={`px-4 py-3 rounded-xl font-bold transition-all duration-300 flex items-center space-x-2 ${
+                                                    currentPage === item.id
+                                                        ? 'text-blue-600 bg-blue-50'
+                                                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                                                }`}
+                                            >
+                                                <i className={item.icon}></i>
+                                                <span>{item.label}</span>
+                                            </button>
+                                        ))}
+                                    </nav>
+
+                                    <div className="hidden lg:flex items-center space-x-2">
+                                        <button className="px-6 py-3 border-2 border-blue-500 text-blue-500 rounded-xl font-bold hover:bg-blue-50 transition-all duration-300 hover-lift">
+                                            ចូលគណនី
+                                        </button>
+                                        <button className="px-6 py-3 gradient-primary text-white rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover-lift hover-glow">
+                                            ចាប់ផ្ដើមរៀន
+                                        </button>
+                                    </div>
+
+                                    <button 
+                                        onClick={() => setIsMobileMenuOpen(true)}
+                                        className="lg:hidden w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                                    >
+                                        <i className="fas fa-bars text-gray-600"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </header>
+
+                        {/* Mobile Menu */}
+                        {isMobileMenuOpen && (
+                            <div className="fixed inset-0 z-50 lg:hidden">
+                                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)}></div>
+                                <div className="absolute top-0 right-0 h-full w-80 bg-white shadow-2xl overflow-y-auto">
+                                    <div className="p-6">
+                                        <div className="flex items-center justify-between mb-8">
+                                            <button 
+                                                onClick={() => {
+                                                    navigateTo('home');
+                                                    setIsMobileMenuOpen(false);
+                                                }}
+                                                className="flex items-center space-x-3"
+                                            >
+                                                <div className="w-12 h-12 gradient-primary rounded-2xl flex items-center justify-center text-white shadow-lg">
+                                                    <i className="fas fa-laptop-code text-xl"></i>
+                                                </div>
+                                                <span className="text-gradient font-khmer text-2xl font-black">KTA</span>
+                                            </button>
+                                            <button 
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                                className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                                            >
+                                                <i className="fas fa-times text-gray-600"></i>
+                                            </button>
+                                        </div>
+
+                                        <nav className="space-y-2 mb-8">
+                                            {navItems.map((item) => (
+                                                <button
+                                                    key={item.id}
+                                                    onClick={() => {
+                                                        navigateTo(item.id);
+                                                        setIsMobileMenuOpen(false);
+                                                    }}
+                                                    className={`w-full flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 group ${
+                                                        currentPage === item.id
+                                                            ? 'bg-blue-50 text-blue-600'
+                                                            : 'hover:bg-blue-50 text-gray-800'
+                                                    }`}
+                                                >
+                                                    <i className={`${item.icon} text-lg w-6 text-center group-hover:scale-110 transition-transform`}></i>
+                                                    <span className="font-bold">{item.label}</span>
+                                                </button>
+                                            ))}
+                                        </nav>
+
+                                        <div className="space-y-3">
+                                            <button className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                                                <i className="fas fa-user-plus"></i>
+                                                <span>ចាប់ផ្ដើមរៀន</span>
+                                            </button>
+                                            <button className="w-full py-4 border-2 border-blue-500 text-blue-500 rounded-2xl font-bold hover:bg-blue-50 transition-all duration-300 flex items-center justify-center space-x-2">
+                                                <i className="fas fa-sign-in-alt"></i>
+                                                <span>ចូលគណនី</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </>
+                );
+            };
+
+            // Footer Component
+            const Footer = () => {
+                return (
+                    <footer className="bg-gray-900 text-white pt-16 pb-8">
+                        <div className="container mx-auto px-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                                <div>
+                                    <div className="flex items-center space-x-3 mb-6">
+                                        <div className="w-12 h-12 gradient-primary rounded-2xl flex items-center justify-center text-white">
+                                            <i className="fas fa-laptop-code text-xl"></i>
+                                        </div>
+                                        <span className="text-gradient-gold font-khmer text-2xl font-black">Khmer Tech Academy</span>
+                                    </div>
+                                    <p className="text-gray-400 mb-6 leading-relaxed">
+                                        យើងផ្តល់វគ្គសិក្សាដ៏ល្អប្រសើរបំផុតសម្រាប់អ្នកចាប់ផ្ដើមរៀនពីការសរសេរកូដ និងការអភិវឌ្ឍកម្មវិធីជាមួយគ្រូដែលមានជំនាញ
+                                    </p>
+                                    <div className="flex space-x-4">
+                                        {[
+                                            { icon: 'fab fa-facebook-f', color: 'hover:bg-blue-600' },
+                                            { icon: 'fab fa-telegram', color: 'hover:bg-blue-400' },
+                                            { icon: 'fab fa-youtube', color: 'hover:bg-red-600' },
+                                            { icon: 'fab fa-tiktok', color: 'hover:bg-black' }
+                                        ].map((social, index) => (
+                                            <a key={index} href="#" className={`w-12 h-12 bg-gray-800 rounded-2xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 ${social.color}`}>
+                                                <i className={social.icon}></i>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 className="text-2xl font-black text-white mb-6 font-khmer border-l-4 border-yellow-400 pl-4">វគ្គសិក្សា</h3>
+                                    <ul className="space-y-4">
+                                        {[
+                                            'Full-Stack Web Development',
+                                            'Mobile App Development', 
+                                            'Python & Data Science',
+                                            'UI/UX Design',
+                                            'DevOps & Cloud Computing'
+                                        ].map((course, index) => (
+                                            <li key={index}>
+                                                <button 
+                                                    onClick={() => navigateTo('courses')}
+                                                    className="text-gray-400 hover:text-yellow-300 transition-all duration-300 hover:translate-x-2 flex items-center gap-3 group"
+                                                >
+                                                    <i className="fas fa-chevron-right text-yellow-400 text-sm group-hover:scale-125 transition-transform"></i>
+                                                    {course}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 className="text-2xl font-black text-white mb-6 font-khmer border-l-4 border-yellow-400 pl-4">តំណរបារណាវដ្ដី</h3>
+                                    <ul className="space-y-4">
+                                        {[
+                                            { id: 'home', icon: 'fas fa-home', text: 'ទំព័រដើម' },
+                                            { id: 'courses', icon: 'fas fa-book', text: 'វគ្គសិក្សា' },
+                                            { id: 'features', icon: 'fas fa-star', text: 'លក្ខណៈពិសេស' },
+                                            { id: 'instructors', icon: 'fas fa-chalkboard-teacher', text: 'គ្រូបង្រៀន' },
+                                            { id: 'testimonials', icon: 'fas fa-comments', text: 'មតិអ្នកប្រើ' },
+                                            { id: 'blog', icon: 'fas fa-newspaper', text: 'អត្ថបទ' }
+                                        ].map((link, index) => (
+                                            <li key={index}>
+                                                <button 
+                                                    onClick={() => navigateTo(link.id)}
+                                                    className="text-gray-400 hover:text-yellow-300 transition-all duration-300 hover:translate-x-2 flex items-center gap-3 group"
+                                                >
+                                                    <i className={`${link.icon} text-yellow-400 text-sm group-hover:scale-125 transition-transform`}></i>
+                                                    {link.text}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 className="text-2xl font-black text-white mb-6 font-khmer border-l-4 border-yellow-400 pl-4">ទំនាក់ទំនង</h3>
+                                    <ul className="space-y-4">
+                                        <li className="text-gray-400 flex items-center gap-3 group hover:text-yellow-300 transition-colors">
+                                            <i className="fas fa-envelope text-yellow-400 text-lg"></i>
+                                            <div>
+                                                <div>info@khmertech.academy</div>
+                                                <div className="text-sm text-gray-500">អ៊ីមែលផ្លូវការ</div>
+                                            </div>
+                                        </li>
+                                        <li className="text-gray-400 flex items-center gap-3 group hover:text-yellow-300 transition-colors">
+                                            <i className="fas fa-phone text-yellow-400 text-lg"></i>
+                                            <div>
+                                                <div>+855 12 345 678</div>
+                                                <div className="text-sm text-gray-500">ទូរស័ព្ទ</div>
+                                            </div>
+                                        </li>
+                                        <li className="text-gray-400 flex items-center gap-3 group hover:text-yellow-300 transition-colors">
+                                            <i className="fas fa-map-marker-alt text-yellow-400 text-lg"></i>
+                                            <div>
+                                                <div>ភ្នំពេញ, កម្ពុជា</div>
+                                                <div className="text-sm text-gray-500">ទីតាំង</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div className="border-t border-gray-800 pt-8 text-center">
+                                <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                                    <p className="text-gray-500">
+                                        &copy; 2023 Khmer Tech Academy. រក្សាសិទ្ធិគ្រប់យ៉ាង
+                                    </p>
+                                    <div className="flex space-x-6">
+                                        <button className="text-gray-500 hover:text-yellow-300 transition-colors">គោលការណ៍ភាពឯកជន</button>
+                                        <button className="text-gray-500 hover:text-yellow-300 transition-colors">លក្ខខណ្ឌសេវាកម្ម</button>
+                                        <button className="text-gray-500 hover:text-yellow-300 transition-colors">គោលនយោបាយ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                );
+            };
+
+            // Render current page
+            const renderPage = () => {
+                switch(currentPage) {
+                    case 'home': return <HomePage />;
+                    case 'courses': return <CoursesPage />;
+                    case 'course-detail': return <CourseDetailPage />;
+                    case 'features': return <FeaturesPage />;
+                    case 'instructors': return <InstructorsPage />;
+                    case 'testimonials': return <TestimonialsPage />;
+                    case 'blog': return <BlogPage />;
+                    case 'article-detail': return <ArticleDetailPage />;
+                    default: return <HomePage />;
+                }
+            };
+
+            return (
+                <div className="font-sans">
+                    <Header />
+                    <div className={isTransitioning ? 'page-transition-exit-active' : 'page-transition-enter-active'}>
+                        {renderPage()}
+                    </div>
+                    <Footer />
+                </div>
+            );
+        };
+
+        // Render the App
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
